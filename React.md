@@ -18,3 +18,13 @@
 
 1. permite identificar cada elemento de uma lista do React e somente rerenderizar se for alterado.
 2. precisa ser único => index não é a melhor opção.
+
+# HOOKS
+1. ele precisa ser utilizado na raiz do sue componente função. 
+
+
+# STATE 
+1. Não pode ser mutado
+
+# PROPS 
+
