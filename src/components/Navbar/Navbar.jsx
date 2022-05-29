@@ -2,17 +2,24 @@
 // import sacola from "assets/icons/sacola.svg"
 // import logo from "assets/logo.svg"
 
+// props = {
+//     logo: "assets....",
+//     sacola: "assets..."
+// }
+
 // function Navbar({logo, sacola}){
 function Navbar(props){
 
-    const {logo, sacola} = props
+    // const {logo, sacola} = props
+    // const logo = props.logo
+    // const sacola = props.sacola 
 
     return(
         <div className="Home__header Header">
             <div className="row">
                 <div className="Header__logo Logo">
                 <img
-                    src={logo}
+                    src={props.logo}
                     width="70px"
                     alt="Logo El Geladon"
                     className="Logo__icone"
@@ -22,7 +29,7 @@ function Navbar(props){
                 <div className="Header__opcoes Opcoes">
                 <div className="Opcoes__sacola Sacola">
                     <img
-                    src={sacola}
+                    src={props.sacola}
                     width="40px"
                     className="Sacola__icone"
                     alt="Sacola de compras"

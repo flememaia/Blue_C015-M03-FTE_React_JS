@@ -13,6 +13,8 @@
 
 1. iniciam com letra maiúscula
 2. são funções que retornam jsx
+3. exportar o componente 
+4. importar o componente onde queremos utilizá-lo
 
 # KEY
 

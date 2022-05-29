@@ -1,18 +1,14 @@
 import React, {useState} from 'react' // importando o useState pra gerenciar o estado da nossa aplicação 
 import "./PaletaLista.css"
 import { paletas } from "../../mocks/paletas"
+import PaletaItem from 'components/PaletaItem/PaletaItem'
 
 console.log("paletas", paletas)
 
-// paletaSelecionadas = 
-// {
-//     "0": 4, 
-//     "5": 1, 
-//     "6": 2, 
-//     }
-
 function PaletaLista(){
 
+
+    // manipular o state via HOOK useState
     const [paletaSelecionadas, setPaletaSelecionadas ] = useState({})
 
     // variável que guarda o valor do meu state
@@ -47,69 +43,18 @@ function PaletaLista(){
         setPaletaSelecionadas({...paletaSelecionadas, ...paleta})
     }
 
-    // OPÇÃO TERNARIO 
-    // const badgeCounter = (canRender, index) => {
-    //     return (
-    //         <> 
-    //             {Boolean(canRender)
-    //                 ? <span className="PaletaListaItem__badge">{paletaSelecionadas[index]}</span>
-    //                 : null 
-    //             }
-    //         </>
-    //         )
-    // }
-
-    const badgeCounter2 = (canRender, index) => {
-        return (
-            <> 
-            {/* SHORT-CIRCUIT */}
-                {Boolean(canRender) && <span className="PaletaListaItem__badge">{paletaSelecionadas[index]}</span>}
-            </>
-            )
-    }
-
-    const removeButton = (canRender, index) => {
-        return (
-            <> 
-            {/* SHORT-CIRCUIT */}
-                {Boolean(canRender) && 
-                    <button className="Acoes__remover " onClick={() => removerItem(index)}>remover</button>}
-            </>
-            )
-        }
-
     return(
         <div className="PaletaLista"> 
         {/* MAP => iterando pela nossa lista (array) e renderizando cada componente dessa lista na tela  */}
         {paletas.map((paleta, index)=> {
             return (
-                <div key={index} className="PaletaListaItem">
-                    <div>
-                        {/* {badgeCounter(paletaSelecionadas[index], index)} */}
-                        {badgeCounter2(paletaSelecionadas[index], index)}
-                        <div className="PaletaListaItem__titulo">
-                            {paleta.titulo}
-                        </div>
-                        <div className="PaletaListaItem__preco">R$ {paleta.preco}</div>
-                            <div className="PaletaListaItem__descricao">
-                                {paleta.descricao}
-                            </div>
-                            <div className="PaletaListaItem__acoes Acoes">
-                                {/* RENDERIZAÇÃO CONDICIONAL DE ESTILO */}
-                                <button className={`Acoes__adicionar ${!paletaSelecionadas[index] && "Acoes__adicionar--preencher"}`} 
-                                    onClick={() => adicionarItem(index)}
-                                >
-                                adicionar
-                                </button>
-                                {removeButton(paletaSelecionadas[index], index) }
-                            </div>
-                    </div>
-                    <img
-                        className="PaletaListaItem__foto"
-                        src={paleta.foto}
-                        alt={`Paleta de ${paleta.sabor}`}
-                    />
-                </div>
+                <PaletaItem key={index} 
+                    adicionarItem={adicionarItem} 
+                    removerItem={removerItem}
+                    quantidadeSelecionada={paletaSelecionadas[index]}
+                    index={index}
+                    paleta={paleta}
+                />
         )})}
         </div>
     )
