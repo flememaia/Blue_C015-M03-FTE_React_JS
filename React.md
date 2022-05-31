@@ -29,4 +29,79 @@
 1. Não pode ser mutado
 
 # PROPS 
+  
+# RENDERIZAÇÃO CONDICIONAL
+## CONDICIONAL DE ESTILO
+  ```js
+<!--   OPÇÃO 1 -->
+<button className={`Acoes__adicionar ${!quantidadeSelecionada && "Acoes__adicionar--preencher"}`}
+                     
+  ```
+  ```js
+<!--   OPÇÃO 2 -->
+                                                                                        
+                        <button className={
+                            (quantidadeSelecionada>0) ? 
+                                "Acoes__adicionar" 
+                                : "Acoes__adicionar Acoes__adicionar--preencher" } 
 
+                            onClick={() => adicionarItem(index)}
+  ```
+  ## CONDICIONAL DE "ESTRUTURAS" NA TELA
+```js
+<!--   OPÇÃO 1 -->
+const removeButton = (canRender, index) => {
+        return (
+            <> 
+            {/* SHORT-CIRCUIT */}
+            {Boolean(canRender) && 
+                <button className="Acoes__remover " onClick={() => removerItem(index)}>remover</button>}
+            </>
+            )
+        }
+
+           
+  ```
+  ```js
+<!--   OPÇÃO 2 -->
+    const removeButton1 = (quantidadeSelecionada, index) => {
+        return (
+            <> 
+            {/* SHORT-CIRCUIT */}
+            {(quantidadeSelecionada > 0) && 
+                    <button className="Acoes__remover " onClick={() => removerItem(index)}>remover</button>}
+            </>
+            )
+        }
+
+                                                                                                  
+        
+  ```
+```js
+<!--   OPÇÃO 3 -->
+           const removeButton2 = (quantidadeSelecionada, index) => {
+        return (
+            <> 
+            {(quantidadeSelecionada > 0) ?
+                    <button className="Acoes__remover " onClick={() => removerItem(index)}>remover</button>
+                    : null
+                }
+            </>
+            )
+        }    
+
+                                                                        
+        
+  ```
+```js
+<!--   OPÇÃO 4 -->
+                                                                                        
+       const removeButton3 = (quantidadeSelecionada, index) => {
+            if(quantidadeSelecionada > 0) {
+                return (<button className="Acoes__remover " onClick={() => removerItem(index)}>remover</button>)
+            } else {
+                return null
+            }
+        }                   
+  ```
+                          
